@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        function PriorityQueue() {
+            let items = [];
+            function QueueElement(element, priority) {
+                this.element = element;
+                this.priority = priority;
+            }
+            this.isEmpty = () => items.length == 0;
+            this.print = () => items;
+            this.enqueue = (element, priority) => {
+                // debugger;
+                const queueElement = new QueueElement(element, priority);
+                if (this.isEmpty()) {
+                    items.push(queueElement);
+                    // console.log('first element ', queueElement);
+                } else {
+                    let added = false;
+                    for (let i = 0; i < items.length; i++) {
+                        // console.log('queue name', queueElement.element);
+                        // console.log('queueElement.priority', queueElement.priority);
+                        // console.log('item name', items[i].element);
+                        // console.log('items[i].priority', items[i].priority);
+                        // console.log('condition : ', queueElement.priority < items[i].priority);
+                        if (queueElement.priority < items[i].priority) {
+                            items.splice(i, 0, queueElement);
+                            added = true;
+                            break;
+                        }
+                        // console.log('added', added);
+                    }
+
+                    if (!added) {
+                        items.push(queueElement);
+                    }
+                }
+            }
+            this.dequeue = () => items.shift();
+            this.front = () => items[0];
+        }
+        let _pQueue = new PriorityQueue();
+        // console.log('IsEmpty', _pQueue.isEmpty());
+        _pQueue.enqueue('John', 2);
+        _pQueue.enqueue('Mike', 3);
+        _pQueue.enqueue('Anna', 1);
+        console.log('Print', _pQueue.print());
+        console.log('front', _pQueue.front());
+        console.log('dequeue', _pQueue.dequeue());
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

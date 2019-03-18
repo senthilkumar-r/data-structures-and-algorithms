@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        var myVariable = 'global';
+        myOtherVariable = 'global';
+        function myFunction() {
+            var myVariable = 'local';
+            return myVariable;
+        }
+        function myOtherFunction() {
+            myOtherVariable = 'local';
+            return myOtherVariable;
+        }
+        console.log(myVariable); //{1}
+        console.log(myFunction()); //{2}
+        console.log(myOtherVariable); //{3}
+        console.log(myOtherFunction()); //{4}
+        console.log(myOtherVariable); //{5}
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

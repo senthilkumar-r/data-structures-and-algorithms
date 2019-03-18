@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        function Queue() {
+            let items = [];
+            this.isEmpty = () => items.length == 0;
+            this.print = () => items;
+            this.enqueue = (element) => items.push(element);
+            this.dequeue = () => items.shift();
+            this.front = () => items[0];
+            this.size = () => items.length;
+        }
+        function hotPotato(items, num) {
+            let _queue = new Queue();
+            for (let i = 0; i < items.length; i++) {
+                _queue.enqueue(items[i]);
+            }
+            let eliminated = '';
+            while (_queue.size() > 1) {
+                console.log('size', _queue.size());
+                console.log('Before DeQueue', _queue.print());
+                for (let i = 0; i < num; i++) {
+                    // console.log('iteration', i);
+                    _queue.enqueue(_queue.dequeue());
+                }
+                eliminated = _queue.dequeue();
+                console.log('eliminated', eliminated);
+                // console.log('After DeQueue', _queue.print());
+            }
+            console.log('Print', _queue.print());
+            return _queue.dequeue();
+        }
+        var names = ['A', 'B', 'C', 'D', 'E'];
+        var winner = hotPotato(names, 7);
+        console.log('The winner is: ' + winner);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
